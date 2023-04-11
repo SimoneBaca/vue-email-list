@@ -4,25 +4,32 @@ generare 10 indirizzi email e stamparli in pagina all’interno di una lista.
 Bonus
 Far comparire gli indirizzi email solamente quando sono stati tutti generati.*/
 
+
 const { createApp } = Vue
+
 createApp({
     data() {
         return {
-            title: 'GENERATE RANDOM MAIL',
-            email: []
+            emailsToGenerate: 10,
+            generationComplete: false,
+            apiURL: 'https://flynn.boolean.careers/exercises/api/random/mail',
+            generatedEmails: [],
+            errorPresent: false,
+            elapsedTime: null,
         }
     },
     methods: {
-    },
-
-    beforeMount() {
-        for (let i = 1; i <= 10; i++) {
-            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-                .then((response) => {
-                    this.email.push(response.data.response);
-                    console.log(this.email)
-                });
+        generateEmails() {
+            for (let i = 0; i < this.emailsToGenerate; i++) {
+                axios
+                    .get(this.apiURL)
+                    .then(response => {
+                        this.generatedEmails.push(response.data.response);
+                    })
+            }
         }
     },
-}).mount('#app')   
- 
+    mounted() {
+        this.generateEmails();
+    }
+}).mount('#app')

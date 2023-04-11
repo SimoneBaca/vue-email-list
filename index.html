@@ -9,13 +9,17 @@
     </head>
     <body>
         <div id="app">
-            <h1>{{ title }}</h1>
-            <ul>
-                <li v-for="mail in email"> {{ mail }}</li>
-            </ul>
+            <h1>GENERATE RANDOM EMAIL</h1>
+            <div v-else>
+                <ul>
+                    <li v-for="mail in generatedEmails">
+                        <h3>{{mail}}</h3>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-    
-        <script
+
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.global.min.js"></script>
         <script src="./app.js"></script>
