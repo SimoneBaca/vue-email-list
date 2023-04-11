@@ -8,6 +8,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            title: 'GENERATE RANDOM MAIL',
             email: []
         }
     },
